@@ -12,10 +12,11 @@ script:
   - mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_FUSE3=0 -DUSE_FUSE2=1
   - make -j$(nproc)
-  - make DESTDIR=appdir -j$(nproc) install ; find appdir/
+  - make DESTDIR=appdir -j$(nproc) install
   - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/apfs-fuse.svg # FIXME
+  - mkdir -p appdir/usr/share/applications/
   - |
-    cat > <<\EOF
+    cat > appdir/usr/share/applications/apfs-fuse.desktop <<\EOF
     [Desktop Entry]
     Type=Application
     Name=apfs-fuse
@@ -25,6 +26,7 @@ script:
     Terminal=true
     Categories=utility;
     EOF
+  - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage -executable=appdir/usr/bin/apfsutil
