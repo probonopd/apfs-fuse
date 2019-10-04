@@ -13,7 +13,7 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_FUSE3=0 -DUSE_FUSE2=1
   - make -j$(nproc)
   - make DESTDIR=appdir -j$(nproc) install
-  - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/apfs-fuse.svg # FIXME
+  - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/ && touch appdir/usr/share/icons/hicolor/scalable/apps/apfs-fuse.svg # FIXME
   - mkdir -p appdir/usr/share/applications/
   - |
     cat > appdir/usr/share/applications/apfs-fuse.desktop <<\EOF
