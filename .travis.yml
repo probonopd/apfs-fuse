@@ -24,7 +24,7 @@ script:
     Exec=apfs-fuse
     Icon=apfs-fuse
     Terminal=true
-    Categories=utility;
+    Categories=Utility;
     EOF
   - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
